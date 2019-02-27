@@ -198,7 +198,7 @@ public class MainActivity extends AppCompatActivity {
         switch (id){
             case R.id.action_history:
                 Intent intent = new Intent(this, GeschiedenisActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent, 0);
                 return true;
             case R.id.action_settings:
                 DialogSettings dialogSettings = new DialogSettings();
@@ -227,7 +227,8 @@ public class MainActivity extends AppCompatActivity {
         switch (requestCode){
             case 0: //BerekenRoute
                 switch (resultCode){
-                    case 0: //Geslaagd
+                    case 0: //Geslaagd - Nieuwe rit
+                        if(data == null){ return; }
                         GeredenRit rit = (GeredenRit)data.getSerializableExtra("rit");
 
                         lblRitnaam.setText(rit.getStart() + " - " + rit.getEind() + "\n(" + rit.getAantalKm() + "km)");
@@ -237,7 +238,18 @@ public class MainActivity extends AppCompatActivity {
                         llNieuweRit.setVisibility(View.GONE);
                         llBestaandeRit.setVisibility(View.VISIBLE);
                         break;
-                    case 1: //Fail
+                    case 1: //Geslaagd - Bestaande rit
+                        Rit r = rittenDao.getById(data.getIntExtra("rit_id", 0));
+                        if (r.getId() == 0){
+                            return;
+                        }
+
+                        btnBevestig.setTag(r);
+                        lblRitnaam.setText(r.getNaam());
+                        lblRitPrijs.setText("€ " + r.getPrijs());
+
+                        llNieuweRit.setVisibility(View.GONE);
+                        llBestaandeRit.setVisibility(View.VISIBLE);
                         break;
                 }
                 break;

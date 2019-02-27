@@ -26,6 +26,8 @@ public class GeredenRit implements Serializable {
     private double prijsPerKmOpMomentVanRit;
     private String start;
     private String eind;
+    private String startVolledig;
+    private String eindVolledig;
     private double aantalKm;
 
     public GeredenRit(){
@@ -82,6 +84,22 @@ public class GeredenRit implements Serializable {
 
     public void setEind(@NonNull String eind) {
         this.eind = eind;
+    }
+
+    public String getStartVolledig() {
+        return startVolledig;
+    }
+
+    public void setStartVolledig(String startVolledig) {
+        this.startVolledig = startVolledig;
+    }
+
+    public String getEindVolledig() {
+        return eindVolledig;
+    }
+
+    public void setEindVolledig(String eindVolledig) {
+        this.eindVolledig = eindVolledig;
     }
 
     @NonNull

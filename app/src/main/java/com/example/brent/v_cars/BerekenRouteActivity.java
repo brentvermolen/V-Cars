@@ -53,6 +53,8 @@ public class BerekenRouteActivity extends FragmentActivity implements OnMapReady
 
     public String origin;
     public String dest;
+    public String originLocality;
+    public String destLocality;
 
     List<Address> addresses;
 
@@ -195,8 +197,8 @@ public class BerekenRouteActivity extends FragmentActivity implements OnMapReady
                 Address origin = addresses.get(0);
                 Address dest = addresses.get(1);
 
-                this.origin = origin.getLocality();
-                this.dest = dest.getLocality();
+                this.originLocality = origin.getLocality();
+                this.destLocality = dest.getLocality();
 
                 LatLng originLatLng = new LatLng(origin.getLatitude(), origin.getLongitude());
                 LatLng destLatLng = new LatLng(dest.getLatitude(), dest.getLongitude());
@@ -321,8 +323,10 @@ public class BerekenRouteActivity extends FragmentActivity implements OnMapReady
             lblPrijs.setText("€ " + strPrijs);
             rit = new GeredenRit();
             rit.setAantalKm(aantalKm);
-            rit.setStart(origin);
-            rit.setEind(dest);
+            rit.setStart(originLocality);
+            rit.setEind(destLocality);
+            rit.setStartVolledig(origin);
+            rit.setEindVolledig(dest);
 
             double radius = circle.getRadius();
             double scale = radius / 500;

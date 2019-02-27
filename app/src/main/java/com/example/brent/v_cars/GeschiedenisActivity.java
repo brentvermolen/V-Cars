@@ -1,5 +1,6 @@
 package com.example.brent.v_cars;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -47,12 +48,40 @@ public class GeschiedenisActivity extends AppCompatActivity {
     }
 
     private void handleEvents() {
-        /*lstGeschiedenis.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lstGeschiedenis.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 GeredenRit rit = items.get(position);
-                Toast.makeText(GeschiedenisActivity.this, "" + rit.getId(), Toast.LENGTH_SHORT).show();
+                if (rit.getBestaandeRit_id() == 0){
+                    Intent intent = new Intent(GeschiedenisActivity.this, BerekenRouteActivity.class);
+                    intent.putExtra("origin", rit.getStartVolledig());
+                    intent.putExtra("dest", rit.getEindVolledig());
+                    startActivityForResult(intent, 0);
+                }else{
+                    Intent result = new Intent();
+                    result.putExtra("rit_id", rit.getBestaandeRit_id());
+                    setResult(1, result);
+                    finish();
+                }
             }
-        });*/
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode){
+            case 0: //BerekenRoute
+                switch (resultCode){
+                    case 0: //Geslaagd
+                        if(data == null){ return; }
+
+                        setResult(0, data);
+                        finish();
+                        break;
+                    case 1: //Fail
+                        break;
+                }
+                break;
+        }
     }
 }
