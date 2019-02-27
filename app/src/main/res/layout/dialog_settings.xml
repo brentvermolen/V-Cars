@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Instellingen"
+        android:textSize="50dp"
+        android:gravity="center"
+        android:padding="15dp"
+        android:background="@color/colorPrimary"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:text="Prijs per km:"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="35dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="€ "
+                android:textSize="25dp"/>
+
+            <EditText
+                android:id="@+id/txtPrijsPerKm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Prijs per km"
+                android:inputType="numberDecimal"
+                android:textSize="25dp"
+                android:nextFocusDown="@id/txtThuisAdres"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:text="Thuis adres:"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="35dp">
+
+            <EditText
+                android:id="@+id/txtThuisAdres"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Adres"
+                android:inputType="textCapWords"
+                android:textSize="25dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>
