@@ -239,17 +239,19 @@ public class MainActivity extends AppCompatActivity {
                         llBestaandeRit.setVisibility(View.VISIBLE);
                         break;
                     case 1: //Geslaagd - Bestaande rit
-                        Rit r = rittenDao.getById(data.getIntExtra("rit_id", 0));
-                        if (r.getId() == 0){
-                            return;
+                        if (data != null){
+                            Rit r = rittenDao.getById(data.getIntExtra("rit_id", 0));
+                            if (r.getId() == 0){
+                                return;
+                            }
+
+                            btnBevestig.setTag(r);
+                            lblRitnaam.setText(r.getNaam());
+                            lblRitPrijs.setText("€ " + r.getPrijs());
+
+                            llNieuweRit.setVisibility(View.GONE);
+                            llBestaandeRit.setVisibility(View.VISIBLE);
                         }
-
-                        btnBevestig.setTag(r);
-                        lblRitnaam.setText(r.getNaam());
-                        lblRitPrijs.setText("€ " + r.getPrijs());
-
-                        llNieuweRit.setVisibility(View.GONE);
-                        llBestaandeRit.setVisibility(View.VISIBLE);
                         break;
                 }
                 break;
